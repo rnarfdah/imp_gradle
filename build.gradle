@@ -50,3 +50,33 @@ task copyPdfReportForArchiving (type: Copy) {
     include "*.pdf"
     into ("$buildDir/toArchive2")
 }
+
+task copyAllPdfReportForArchiving (type: Copy) {
+    from ("$buildDir/reports")
+    include "**/*.pdf"
+    into ("$buildDir/toArchive3")
+}
+
+task copyReportDirForArchiving (type: Copy) {
+    from ("$buildDir") {
+        include "reports/**"
+    }
+    into ("$buildDir/toArchive4")
+}
+
+task moveReports {
+    doLast {
+        ant.move file: "${buildDir}/notes",
+                todir: "${buildDir}/toArchive"
+    }
+}
+
+task myClean (type: Delete) {
+    delete "$buildDir/junk"
+}
+
+task cleanTempFiles (type: Delete) {
+    delete fileTree("$buildDir").matching {
+        include "**/*.tmp"
+    }
+}
