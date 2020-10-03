@@ -1,0 +1,21 @@
+task extractDatabase {
+    doLast {
+        println 'Extracting database metadata...'
+    }
+}
+
+extractDatabase.doLast{
+    println 'Downloading data...'
+}
+extractDatabase.doLast {
+    println 'closing database connection..'
+}
+
+extractDatabase {
+    doFirst {
+        println 'Connectiong to the database...'
+    }
+    doFirst {
+        println 'Setting up to the database..'
+    }
+}

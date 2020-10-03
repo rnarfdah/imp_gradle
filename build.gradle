@@ -1,0 +1,52 @@
+task hello {
+    doLast {
+        println 'hello,'
+    }
+}
+
+task world(dependsOn:hello) {
+    doLast {
+        println "world"
+    }
+}
+
+task ensureDirectory {
+    doLast {
+        mkdir "images"
+    }
+}
+
+task ensureDirectory2 {
+    doLast {
+        mkdir "reports"
+    }
+}
+
+task ensureDirectory3 {
+    doLast {
+        mkdir "toArchive"
+    }
+}
+
+buildDir = "C:/Users/LAB_TI_33/VSCodeFile/implementasi_gradle"
+
+task copyReport(type: Copy) {
+    from file ("$buildDir/reports/my-report.pdf")
+    into file ("$buildDir/toArchive")
+}
+
+task copyReport2 (type: Copy) {
+    from ("$buildDir/reports/my-report2.pdf")
+    into ("$buildDir/toArchive")
+}
+
+task copyReportForArchiving (type: Copy) {
+    from ("$buildDir/reports/my-report3.pdf", "src/docs/manual.pdf")
+    into ("$buildDir/toArchive")
+}
+
+task copyPdfReportForArchiving (type: Copy) {
+    from ("$buildDir/reports")
+    include "*.pdf"
+    into ("$buildDir/toArchive2")
+}

@@ -1,0 +1,15 @@
+defaultTasks 'DisplayTasks'
+
+task emptyTask {
+    doLast{
+        //do something
+    }
+}
+
+task DisplayTasks {
+    doLast {
+        tasks.each {
+            println "Tak name is ${it.name}"
+        }
+    }
+}
